@@ -1,0 +1,61 @@
+This file contains some words and some sentences.
+
+The file will be used in conjunction with the command "grep"
+to illustrate how regexp works...
+
+
+command
+commands
+This is a command
+Let's learn some Unix/Linux commands...
+
+Words containing the character "w":
+
+we
+wow
+will
+world
+white
+wonderful
+
+What if we say wow!
+woosh
+woodoo
+wrooom
+I was wrong once...
+https://www.unical.it
+
+
+Words containing the character "y":
+tiny
+puppy
+Willy
+yield
+yesterday
+
+
+
+Some URLs:
+
+https://www.google.com      # The web engine by definition!
+https://www.unical.it
+http://openbox.org/
+http://mysite
+
+My email:
+leonardo.primavera@unical.it
+
+And then, some numbers:
+
+00
+01
+02
+10
+20
+30
+40
+50
+10.001
+1000.101
+3.1415926
+.0001
