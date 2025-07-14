@@ -53,7 +53,7 @@ If Vim ever feels "stuck," press `Esc` repeatedly to return to Normal mode.
 
 ---
 
-# ⌨️ 2. Basic Navigation
+# 2. Basic Navigation
 
 Navigation is key to using Vim effectively. Here are the most commonly used commands in **Normal mode**.
 
@@ -199,7 +199,7 @@ Use command mode (start with `:` from Normal mode):
 
 ---
 
-# 7. Simple Configuration (`~/.vimrc`)
+# 7. Simple Configuration
 
 Create or edit a `.vimrc` file in your home directory to customize Vim.
 
