@@ -103,9 +103,9 @@ You can also visualize your current mode in some enhanced Vim environments or wh
 
 # 2. Basic Navigation
 
-Navigation is key to using Vim effectively. Here are the most commonly used commands in **Normal mode**.
+Understanding how to move around a file quickly is one of the most important skills in Vim.
 
-## Character Navigation
+### Cursor Movement
 
 | Key | Action     |
 | --- | ---------- |
@@ -114,41 +114,63 @@ Navigation is key to using Vim effectively. Here are the most commonly used comm
 | `j` | Move down  |
 | `k` | Move up    |
 
-### Example:
+These keys correspond to the left, right, down, and up arrows but allow your hands to stay on the home row.
 
-Use `jjjj` to move down 4 lines.
+### Word and Line Navigation
 
-## Word Navigation
+| Key | Action                                                  |
+| --- | ------------------------------------------------------- |
+| `w` | move forward to the beginning of the next word          |
+| `e` | move forward to the end of the current/next word        |
+| `b` | move backward to the beginning of the word              |
+| `0` | move to the beginning of the line                       |
+| `^` | move to the first non-whitespace character of the line  |
+| `$` | move to the end of the line                             |
 
-| Key | Action              |
-| --- | ------------------- |
-| `w` | Next word           |
-| `b` | Previous word       |
-| `e` | End of current word |
+### Screen Navigation
 
-### Example:
+| Key | Action                            |
+| --- | --------------------------------- |
+| `H` | move to the top of the screen     |
+| `M` | move to the middle of the screen  |
+| `L` | move to the bottom of the screen  |
 
-In a sentence, repeatedly pressing `w` jumps to each next word.
+### Scrolling
 
-## Line Navigation
+| Key      | Action                         |
+| -------- | -------------------------------|
+| `Ctrl-d` | scroll down half a screen      |
+| `Ctrl-u` | scroll up half a screen        |
+| `Ctrl-f` | scroll forward a full screen   |
+| `Ctrl-b` | scroll backward a full screen  |
 
-| Key | Action                    |
-| --- | ------------------------- |
-| `0` | Start of line             |
-| `^` | First non-blank character |
-| `$` | End of line               |
+### Jumping to Specific Locations
 
-## File Navigation
+| Key | Action                                                |
+| --- | ----------------------------------------------------- |
+| `gg`| go to the beginning of the file                       |
+| `G` | go to the end of the file                             |
+| `:n`| go to line number `n` (e.g., `:42` jumps to line 42)  |
+| `nG`| go to line `n` (same as `:n`)                         |
 
-| Key  | Action                  |
-| ---- | ----------------------- |
-| `gg` | Go to beginning of file |
-| `G`  | Go to end of file       |
-| `:n` | Go to line number `n`   |
+### Searching
 
-### Example:
+| Key        | Action                                 |
+| ---------- | -------------------------------------- |
+| `/pattern` | search forward for 'pattern'           |
+| `?pattern` | search backward for 'pattern'          |
+|     `n`    | repeat search in the same direction    |
+|     `N`    | repeat search in the opposite direction|
 
-Type `:10` + Enter to go to line 10.
+### Example Navigation Exercise
+
+1. Open a file with multiple lines of text.
+2. Use `w`, `b`, `e` to navigate between words.
+3. Try `0`, `^`, and `$` to jump within lines.
+4. Use `gg` and `G` to jump to top and bottom of the file.
+5. Search for a word using `/yourword` and navigate with `n` and `N`.
+
+Mastering these movements is essential for becoming efficient with Vim.
 
 ---
 
@@ -266,7 +288,7 @@ To apply changes, restart Vim or run `:source ~/.vimrc`.
 
 ---
 
-# 🧪 8. Exercises
+# 8. Exercises
 
 ## Beginner
 
