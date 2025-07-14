@@ -40,6 +40,21 @@ vim filename.txt
 
 * Opens `filename.txt` if it exists.
 * If it doesn’t exist, a new file is created.
+* Vim starts in **Normal mode**, so typing immediately won't insert text until you switch modes.
+
+To open Vim in read-only mode:
+
+```bash
+vim -R filename.txt
+```
+
+To open multiple files:
+
+```bash
+vim file1.txt file2.txt
+```
+
+Use `:n` and `:prev` to switch between them.
 
 ### Starting with Vim
 
@@ -50,6 +65,8 @@ vim
 ```
 
 To exit this screen, press `:q` + `Enter`.
+
+It's good practice to use `vimtutor` when you're starting out. Just type `vimtutor` in your terminal for an interactive tutorial.
 
 ## Modes in Vim
 
@@ -62,47 +79,25 @@ Vim is a **modal editor**, which means it operates in different modes:
 | **Visual**  | Select and manipulate blocks of text   | `v`, `V`, `Ctrl-v` |
 | **Command** | Enter commands like save, quit, search | `:`                |
 
-### Tip:
+### More on Modes
 
-If Vim ever feels "stuck," press `Esc` repeatedly to return to Normal mode.
+* **Normal mode** is where you perform actions: move the cursor, delete lines, copy and paste, etc.
+* **Insert mode** allows you to type text, like any traditional editor.
+* **Visual mode** lets you highlight text to manipulate blocks.
+* **Command-line mode** (triggered by `:`) is used for operations like saving, quitting, searching, or global substitutions.
 
----
+### Example Workflow
 
-# 1. Vim Basics
-
-## Opening and Creating Files
-
-```bash
-vim filename.txt
-```
-
-- Opens `filename.txt` if it exists.
-- If it doesn’t exist, a new file is created.
-
-### Starting with Vim
-
-You may see a welcome screen if you open Vim without a filename:
-
-```bash
-vim
-```
-
-To exit this screen, press `:q` + `Enter`.
-
-## Modes in Vim
-
-Vim is a **modal editor**, which means it operates in different modes:
-
-| Mode        | Purpose                                | Enter with         |
-| ----------- | -------------------------------------- | ------------------ |
-| **Normal**  | Navigate, delete, copy/paste, run cmds | `Esc`              |
-| **Insert**  | Insert text (typing mode)              | `i`, `a`, `o`      |
-| **Visual**  | Select and manipulate blocks of text   | `v`, `V`, `Ctrl-v` |
-| **Command** | Enter commands like save, quit, search | `:`                |
+1. Open a file: `vim myfile.txt`
+2. Press `i` to enter Insert mode and type something.
+3. Press `Esc` to return to Normal mode.
+4. Type `:w` to save, then `:q` to quit.
 
 ### Tip:
 
-If Vim ever feels "stuck," press `Esc` repeatedly to return to Normal mode.
+If Vim ever feels "stuck," press `Esc` repeatedly to return to Normal mode. You'll do this often!
+
+You can also visualize your current mode in some enhanced Vim environments or when using certain configurations/plugins.
 
 ---
 
