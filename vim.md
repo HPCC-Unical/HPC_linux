@@ -177,7 +177,7 @@ Use command mode (start with `:` from Normal mode):
 
 ---
 
-# 🔍 6. Searching and Replacing
+# 6. Searching and Replacing
 
 ## Searching
 
