@@ -176,7 +176,8 @@ Mastering these movements is essential for becoming efficient with Vim.
 
 # 3. Insert Mode
 
-Use insert mode to type text. Enter it from Normal mode using the following keys:
+Insert mode is used for adding and editing text, similar to typing in any standard text editor. 
+There are multiple ways to enter insert mode, depending on where and how you want to start typing:
 
 | Key | Description          |
 | --- | -------------------- |
@@ -187,13 +188,39 @@ Use insert mode to type text. Enter it from Normal mode using the following keys
 | `o` | New line below       |
 | `O` | New line above       |
 
-### Example:
 
-- Press `o` to open a new line below and start typing.
+### Examples:
 
-## Exiting Insert Mode
+Assume the current line is:
 
-- Press `Esc` to return to Normal mode.
+```text
+Hello, world!
+       ^ (cursor here)
+```
+
+- Pressing `i` lets you insert **before** the comma.
+- Pressing `a` lets you append **after** the comma.
+- Pressing `A` puts your cursor at the **end of the line**.
+- Pressing `o` creates a **new line below**, and you're placed into Insert mode on the new line.
+- Pressing `O` creates a **new line above**.
+
+### Exiting Insert Mode
+
+To return to Normal mode, press:
+
+- `Esc` – This is the most common way.
+- `Ctrl-[` – An alternative for `Esc`. 
+
+### Practical Exercise 
+
+1. Open a file: `vim test.txt` 
+2. Press `o` to create a new line below and type something.
+3. Press `Esc` to return to Normal mode.
+4. Move to a different line and press `A` to append text.
+5. Try using `I` to insert text at the start of a line.
+6. Use `O` to open a line above the current one and write something.
+
+Practicing these variations builds your speed and fluency with text entry in Vim.
 
 ---
 
