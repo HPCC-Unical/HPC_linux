@@ -111,9 +111,9 @@ To execute a binary compiled with the MPI library, use:
 
 where `number_of_cores` is the number of CPU-Cores (in principle, the number of subprocessed to be spawned) on which the program has to run!
 
-An equivalent statement is: `mpiexec`.
+An equivalent statement is: `mpiexec`
 
-Notice that, for testing purposes, **ANY** program, even a serial one, can be run with `mpirun`, that simple invokes several instances of the same process...
+Notice that, for testing purposes of the installation, **ANY** program, even a serial one, can be run with `mpirun`, that simpley invokes several instances of the same process.
 
 On clusters of different nodes, in which a scheduler of queues is installed (like **SLURM**, for instance), one **MUST** use the scheduler commands to run the program, instead of `mpirun`!
 
@@ -171,4 +171,4 @@ Examples:
 
 Now, the problem is: how can a subprocess distinguish itself from the other, for instance to know which part of the domain has been assigned to it?
 
-This will be the subject of the following topic: [MPI_COMMUNICATORS](file:mpi_communicators.md)
+This will be the subject of the following topic: [MPI_COMMUNICATORS](file://mpi_communicators.md)

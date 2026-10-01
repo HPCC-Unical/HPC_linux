@@ -47,9 +47,9 @@ to determine the rank of the current subprocess in the communicator.
 
 The size of the communicator coincides with the number `size` of processes the MPI program was executed with. The `RANK` is an integer value that ranges from 0 to `size-1`. Generally, the subprocess with `RANK=0` is called `the master` and generally the others are called `slaves`. Notice that there is **NOTHING SPECIAL** in the `master process` with respect to the others, simply MPI keeps this distinction because sometimes the result of some operation must be addressed to a single process and that is generally the `master`.
 
-The following is a simple example of MPI `Hello World`: [hello_world.f90](file:hello_world.f90) in Fortran...
+The following is a simple example of MPI `Hello World`: [hello_world.f90](file://hello_world.f90) in Fortran...
 
-The following is instead a slightly more complicated program in C that splits a domain `[0,2\pi]` with `N` evenly spaced gridpoints on `n` processors: [partition_interval.c](file:partition_interval.c)
+The following is instead a slightly more complicated program in C that splits a domain $[0,2\pi]$ with `N` evenly spaced gridpoints on `n` processors: [partition_interval.c](file://partition_interval.c)
 
 Notice one problem here: the output is (almost!) completely mixed up! This is typical, since there is no predefined order in which the subprocesses can write on the output. This is seldom a true problem in practice, since many times the output is managed by only **ONE SUBPROCESS** (generally the **MASTER**) that receives all the data from all other subprocesses and prints them in order. But there are also several other ways to manage the output correctly. We will see some at the end of the lectures.
 
@@ -129,12 +129,14 @@ Note that those are only the **BASIC TYPES OF DATA**. It is possible to construc
 
 **Very important note:**
 
-since the **buffer** can be **any** contiguous area of memory, like a vector or even an array, one **must ensure** that the sent and received datatypes **ARE THE SAME** and that the data are **NOT SCATTERED** in memory, like it happens with arrays!
+since the **buffer** can be **any** contiguous area of memory, like a vector or even an array, one **must ensure** that the sent and received datatypes **ARE THE SAME** and that the data are **NOT SCATTERED** in memory, like it may happen with array slices in Fortran90!
 
-Here is another example of the previous program, `partition_interval.c`, in which all the data computed on the `slave` subprocesses are subsequently sent to the `master` to be print in order: [partition_interval_ord.c](file:partition_interval_ord.c)
+Here is another example of the previous program, `partition_interval.c`, in which all the data computed on the `slave` subprocesses are subsequently sent to the `master` to be print in order: [partition_interval_ord.c](file://partition_interval_ord.c)
 
 The following program is useful to illustrate a rather common problem: the **SEND** and **RECV** functions are **NOT** interchangeble! If they are **NOT** called in the proper order it may happen that all processes for instance wait for **receiving data** without any of them **sending data**, that translates into a **neverending waiting!**. Such a situation is called **DEADLOCK**.
 
-Have a look at the program: [swap_vectors.f90](file:swap_vectors.f90) and check that it works properly in the present form. Then, exchange the send/receive order of one of the processor and see what happens!
+Have a look at the program: [swap_vectors.f90](file://swap_vectors.f90) and check that it works properly in the present form. Then, exchange the send/receive order of one of the processor and see what happens!
 
 All the communication subroutines/functions seen until now are **BLOCKING**, that is when the subprocesses communicate among them, everything is blocked to wait for the end of the communication. This is the easiest and safest thing to do, however it may decrease consistently the performances. We will see later on other forms of communications that are **NON-BLOCKING**!
+
+Now continue with the following topic: [Collective communications](file://Collective_communications.md)

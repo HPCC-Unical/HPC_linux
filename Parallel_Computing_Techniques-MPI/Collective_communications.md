@@ -114,7 +114,7 @@ where:
 
 - **recv_count**: the number of elements actually received by each subprocess (should be equal to `send_count`!);
 
-- **recv_datatype**: the type of the data to be received;
+- **recv_datatype**: the type of the data to be received (also this should be equal to `send_datatype`!);
 
 - **root**: the subprocess that actually sends the data to all the others;
 
@@ -176,8 +176,7 @@ where:
 
 - **recv_buf**: the final buffer in which the root subprocess will receive the data;
 
-- **recv_count**: the number of elements actually received by the root subprocess (notice: **NOT** the total size of `recv_buffer`, which is `recv_cou
-nt x nprocs`);
+- **recv_count**: the number of elements actually received by the root subprocess (notice: **NOT** the total size of `recv_buffer`, which is `recv_count x nprocs`);
 
 - **recv_datatype**: the type of the data to be received by the root;
 
@@ -203,18 +202,21 @@ Let `A(4)` be a vector present on all 4 subprocesses and we want to gather all v
        B(1:4) = A
        do np = 1, 3
           call mpi_recv( A, 4, MPI_INTEGER, np, tag, MPI_COMM_WORLD, status, ierr )
-       do i = 1, 3
           B(i*4+1:i*4+4) = A
        end do
     end if
 
 With `mpi_gather`:
 
-    if (rank==0) then
-       do i = 1, 16
-          A(i) = i
-       end do
-    end if
+    integer :: A(4)
+    integer, allocatable, dimension (:) :: B
+
+    if ( rank == 0 ) then      ! Allocate the memory for the vector B
+       allocate( B(16) )
+    end
+    do i = 1, 4
+       A(i) = rank * 4 + i
+    end do
     call mpi_gather( A, 4, MPI_INTEGER, B, 4, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr )
 
 which is more compact!
@@ -240,11 +242,11 @@ where:
 
 - **recv_buffer**: the buffer that receives the result of **operation** on the **root**;
 
-- **count**: the size of the buffer(both send and recv);
+- **count**: the size of the buffer (both send and recv);
 
 - **datatype**: the type of data to be combined;
 
-- **operation**: the actual operation to be performed (sum, max, min, prod, etc.);
+- **operation**: the actual operation to be performed (sum, max, min, prod, etc., see table below!);
 
 - **root**: the process that receives the result in `recv_buffer`;
 
@@ -267,16 +269,16 @@ The **operations** are:
 
 Example:
 
-suppose to have to compute the total sum of a vector `A(N)` of `N` real values on 4 subprocesses. Normally, by using SEND/RECEIVE one would write:
+suppose to have to compute the total sum of a vector `A(4N)` of `4xN` real values on 4 subprocesses. Normally, by using SEND/RECEIVE one would write:
 
-    real :: A(N), RES(4), TOT_SUM
+    real :: A(N), RES, TOT_SUM
 
     do i = 1, N
        A(i) = ...
     enddo
-    RES( rank ) = sum( A )
+    RES = sum( A )
     if ( rank /= 0 ) then
-       call mpi_send( RES, 1, MPI_REAL, 0, MPI_COMM_WORLD )
+       call mpi_send( RES, 1, MPI_REAL, 0, MPI_COMM_WORLD, ierr )
     else
        TOT_SUM = RES                ! Saves the local sum first in TOT_SUM
        do np = 1, nprocs
@@ -300,3 +302,9 @@ with mpi_reduce:
     endif
 
 There exist **more advanced** forms of collective communications that will be treated in next lectures.
+
+Have a look at the program: [eq_diff_par.c](file://eq_diff_par.c) for a more complicated example concerning the solution in parallel of a dissipative advection equation:
+
+$$ \frac{\partial f}{\partial t} + c \frac{\partial f}{\partial x} = \nu \frac{\partial^2 f}{\partial x^2} $$
+
+with $t \in [0, T_{end}]$ and $x \in [0,2\pi]$. The boundary conditions are supposed to be periodic. The program uses centered finite differences schemes (second order accurate) to obtain an approximation of both first and second spatial derivative and a first order forward-Euler scheme for time advancement.
